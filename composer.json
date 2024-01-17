@@ -1,0 +1,19 @@
+{
+    "name": "developer/php-profissional",
+    "description": "php-profissional",
+    "autoload": {
+        "files": [
+            "app/helpers/constants.php"
+        ],
+        "psr-4": {
+            "app\\":"app"
+        }
+    },
+    "authors": [
+        {
+            "name": "Davi Bernardo",
+            "email": "davi.bernardo@sbahq.org"
+        }
+    ],
+    "require": {}
+}
