@@ -23,6 +23,7 @@ function regularExpressionMatchArrayRoutes($uri, $routes){
         ARRAY_FILTER_USE_KEY
     );
 }
+//explode params
 function params($uri, $matchedUri){
     if(!empty($matchedUri)){
         $matchedToGetParams = array_keys($matchedUri)[0];
@@ -33,28 +34,26 @@ function params($uri, $matchedUri){
     };
     return [];
 }
+function paramsFormat($uri, $params){
+    $uri = explode('/', ltrim($uri, '/'));
+    $paramsData = [];
+    foreach ($params as $index => $param) {
+        $paramsData[$uri[$index - 1]] = $param;
+    }
+    return $paramsData;
+}
 //get routers
 function router()
 {
     $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $routes = routes();
-
-    // $arr1 = [
-    //     'user',1,'name','davi'
-    // ];
-    
-    // $arr2 = [
-    //     'user','[0-9]+','name','[a-z]+'
-    // ];
-
-    // var_dump(array_diff($arr1,$arr2));
-
     $matchedUri = exactMatchUriInArrayRoutes($uri, $routes);
 
     if(empty($matchedUri)){
         $matchedUri = regularExpressionMatchArrayRoutes($uri, $routes);
         
         $params = params($uri, $matchedUri);
-            var_dump($params);
+        $params = paramsFormat($uri, $params);
+        var_dump($params['user']);
     }
 }
