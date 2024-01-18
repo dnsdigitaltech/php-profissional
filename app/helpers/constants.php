@@ -1,2 +1,2 @@
 <?php
-define('TESTE', 'Teste');
+define('CONTROLLER_PATH', "app\\controllers\\");
